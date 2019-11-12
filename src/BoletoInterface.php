@@ -19,4 +19,19 @@ interface BoletoInterface
      */
     public function obtenerColectivo();
 
+    public function obtenerFecha();
+
+    public function obtenerTarjeta();
+
+    public function obtenerLinea();
+
+    public function obtenerAbonado();
+
+    public function obtenerIdTarjeta();
+
+    public function obtenerSaldo();
+
+    public function obtenerTipo();
+
+    public function obtenerDescripcion();
 }
