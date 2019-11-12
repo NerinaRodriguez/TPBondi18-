@@ -50,6 +50,6 @@ class Medio extends Tarjeta
      */
     protected function calculaValor($linea)
     {
-        return ($this->puedeTrasbordo($linea, ($this->ValorBoleto / 2)));
+        return ($this->puedeTrasbordo($linea, (($this->ValorBoleto->devolverPrecioBoleto()) / 2)));
     }
 }
