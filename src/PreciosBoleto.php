@@ -8,6 +8,6 @@ class PreciosBoleto implements PrecioBoletoInterface
 
     public function devolverPrecioBoleto()
     {
-        return $this->boleto;
+        return $boleto;
     }
 }
