@@ -172,21 +172,21 @@ class Tarjeta implements TarjetaInterface
     {
         if ($this->UltimoColectivo == $linea || $this->UltimoValorPagado == 0.0 || $this->Ultimotrasbordo) {
             $this->Ultimotrasbordo = 0;
-            return $ValorBoleto;
+            return $ValorBoleto->devolverPrecioBoleto();
         }
         if ($this->dependeHora()) {
             if (($this->tiempo->time() - $this->UltimaHora) < 3600) {
                 $this->Ultimotrasbordo = 1;
-                return ($ValorBoleto * 0.33);
+                return ($ValorBoleto->devolverPrecioBoleto() * 0.33);
             }
         } else {
             if (($this->tiempo->time() - $this->UltimaHora) < 5400) {
                 $this->Ultimotrasbordo = 1;
-                return ($ValorBoleto * 0.33);
+                return ($ValorBoleto->devolverPrecioBoleto() * 0.33);
             }
         }
         $this->Ultimotrasbordo = 0;
-        return $ValorBoleto;
+        return $ValorBoleto->devolverPrecioBoleto();
     }
 
     /**
