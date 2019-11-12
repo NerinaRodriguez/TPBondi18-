@@ -25,12 +25,13 @@ class Tarjeta implements TarjetaInterface
 
     protected $tiempo;
 
-    public function __construct($id, TiempoInterface $tiempo, $ValorBoleto)
+    public function __construct($id, TiempoInterface $tiempo, PreciosBoleto $ValorBoleto)
     {
         $this->id = $id; //Guarda el ID
         $this->tiempo = $tiempo; //Guarda la variable tiempo la cual le es inyectada
-        $this->ValorBoleto = $PreciosBoleto->devolverPrecioBoleto();
+        $this->ValorBoleto = $ValorBoleto->devolverPrecioBoleto();
     }
+
 
     /**
      * Funcion para recargar la tarjeta.
