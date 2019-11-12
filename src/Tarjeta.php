@@ -7,7 +7,7 @@ class Tarjeta implements TarjetaInterface
 
     protected $saldo = 0;
 
-    protected $ValorBoleto;
+    protected $ValorBoleto = 0;
 
     protected $plus = 0;
 
