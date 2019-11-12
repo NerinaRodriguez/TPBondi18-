@@ -14,7 +14,9 @@ class TarjetaTest extends TestCase
     {
         $tiempo = new Tiempo();
 
-        $tarjeta = new Tarjeta(0, $tiempo);
+        $ValorBoleto = new PreciosBoleto;
+
+        $tarjeta = new Tarjeta(0, $tiempo, $ValorBoleto);
 
         $this->assertTrue($tarjeta->recargar(10));
         $this->assertEquals($tarjeta->obtenerSaldo(), 10);
@@ -44,7 +46,8 @@ class TarjetaTest extends TestCase
     public function testCargaSaldoInvalido()
     {
         $tiempo = new Tiempo();
-        $tarjeta = new Tarjeta(0, $tiempo);
+        $ValorBoleto = new PreciosBoleto;
+        $tarjeta = new Tarjeta(0, $tiempo, $ValorBoleto);
 
         $this->assertFalse($tarjeta->recargar(15));
         $this->assertEquals($tarjeta->obtenerSaldo(), 0);
@@ -55,7 +58,8 @@ class TarjetaTest extends TestCase
     public function testViajesPlus()
     {
         $tiempo = new Tiempo();
-        $tarjeta = new Tarjeta(0, $tiempo);
+        $ValorBoleto = new PreciosBoleto;
+        $tarjeta = new Tarjeta(0, $tiempo, $ValorBoleto);
 
         $this->assertTrue($tarjeta->recargar(20));
         $this->assertEquals($tarjeta->obtenerSaldo(), 20);
@@ -74,7 +78,8 @@ class TarjetaTest extends TestCase
     public function testRecargarPlus()
     {
         $tiempo = new Tiempo;
-        $tarjeta = new Tarjeta(0, $tiempo);
+        $ValorBoleto = new PreciosBoleto;
+        $tarjeta = new Tarjeta(0, $tiempo, $ValorBoleto = new PreciosBoleto;);
 
         $this->assertTrue($tarjeta->recargar(20));
         $this->assertEquals($tarjeta->restarSaldo("153"), true);
@@ -94,8 +99,9 @@ class TarjetaTest extends TestCase
     public function testTrasbordo()
     {
         $tiempo = new TiempoFalso(0);
+        $ValorBoleto = new PreciosBoleto;
         $tiempo->agregarFeriado("01-06");
-        $tarjeta = new Tarjeta(0, $tiempo);
+        $tarjeta = new Tarjeta(0, $tiempo, $ValorBoleto);
         $tiempo->avanzar(28800);
         $tarjeta->recargar(100);
         $tarjeta->recargar(100);
@@ -183,9 +189,10 @@ class TarjetaTest extends TestCase
     public function testUnTrasbordo()
     {
         $tiempo = new Tiempo();
+        $ValorBoleto = new PreciosBoleto;
         $tiempo->agregarFeriado("01-01-18");
         $this->AssertFalse($tiempo->esFeriado());
-        $tarjeta = new Tarjeta(0, $tiempo);
+        $tarjeta = new Tarjeta(0, $tiempo, $ValorBoleto);
         $tarjeta->recargar(100);
         $tarjeta->recargar(100);
         $colectivo1 = new Colectivo(122, "Semtur", 37);
@@ -205,9 +212,10 @@ class TarjetaTest extends TestCase
     public function testTrasbordo2()
     {
         $tiempo = new Tiempo();
+        $ValorBoleto = new PreciosBoleto;
         $tiempo->agregarFeriado("01-01-18");
         $this->AssertFalse($tiempo->esFeriado());
-        $tarjeta = new Tarjeta(0, $tiempo);
+        $tarjeta = new Tarjeta(0, $tiempo, $ValorBoleto);
         $tarjeta->recargar(100);
         $tarjeta->recargar(100);
         $colectivo1 = new Colectivo(122, "Semtur", 37);
