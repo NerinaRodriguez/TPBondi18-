@@ -7,7 +7,7 @@ class Tarjeta implements TarjetaInterface
 
     protected $saldo = 0;
 
-    protected $ValorBoleto = 14.8;
+    protected $ValorBoleto;
 
     protected $plus = 0;
 
@@ -25,10 +25,11 @@ class Tarjeta implements TarjetaInterface
 
     protected $tiempo;
 
-    public function __construct($id, TiempoInterface $tiempo)
+    public function __construct($id, TiempoInterface $tiempo, $ValorBoleto)
     {
         $this->id = $id; //Guarda el ID
         $this->tiempo = $tiempo; //Guarda la variable tiempo la cual le es inyectada
+        $this->ValorBoleto = $PreciosBoleto->devolverPrecioBoleto();
     }
 
     /**
