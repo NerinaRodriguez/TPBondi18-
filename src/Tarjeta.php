@@ -85,7 +85,7 @@ class Tarjeta implements TarjetaInterface
     protected function pagarPlus()
     {
         if ($this->plus == 2) { //Si debe 2 plus
-            if ($this->saldo >= ($this->ValorBoleto * 2)) { //Y si le alcanza el saldo para pagarlos
+            if ($this->saldo >= ($this->ValorBoleto->devolverPrecioBoleto() * 2)) { //Y si le alcanza el saldo para pagarlos
                 $this->saldo -= ($this->ValorBoleto * 2); //Se le resta el valor
                 $this->plus = 0; //Se le devuelve los plus
                 $this->pagoplus = 2; //Se almacena que se pagaron 2 plus
