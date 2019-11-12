@@ -79,7 +79,7 @@ class TarjetaTest extends TestCase
     {
         $tiempo = new Tiempo;
         $ValorBoleto = new PreciosBoleto;
-        $tarjeta = new Tarjeta(0, $tiempo, $ValorBoleto = new PreciosBoleto;);
+        $tarjeta = new Tarjeta(0, $tiempo, $ValorBoleto);
 
         $this->assertTrue($tarjeta->recargar(20));
         $this->assertEquals($tarjeta->restarSaldo("153"), true);
@@ -215,7 +215,7 @@ class TarjetaTest extends TestCase
         $ValorBoleto = new PreciosBoleto;
         $tiempo->agregarFeriado("01-01-18");
         $this->AssertFalse($tiempo->esFeriado());
-        $tarjeta = new Tarjeta(0, $tiempo, $ValorBoleto);
+        $tarjeta = new Tarjeta(0, $tiempo,$ValorBoleto);
         $tarjeta->recargar(100);
         $tarjeta->recargar(100);
         $colectivo1 = new Colectivo(122, "Semtur", 37);
