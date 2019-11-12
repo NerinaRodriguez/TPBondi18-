@@ -14,7 +14,7 @@ class BoletoTest extends TestCase
     {
 
         $tiempo = new Tiempo();
-        $tarjeta = new Tarjeta(0, $tiempo);
+        $tarjeta = new Tarjeta(0, $tiempo, $ValorBoleto);
         $colectivo = new Colectivo(133, "RosarioBus", 69);
         $boleto = $colectivo->pagarCon($tarjeta);
         $this->assertEquals($boleto->obtenerValor(), null);
@@ -31,7 +31,7 @@ class BoletoTest extends TestCase
     {
         $colectivo = new Colectivo(133, "RosarioBus", 69);
         $tiempo = new TiempoFalso();
-        $tarjeta = new Tarjeta(0, $tiempo);
+        $tarjeta = new Tarjeta(0, $tiempo, $ValorBoleto);
         $tarjeta->recargar(50);
         $tiempo->avanzar(250);
         $boleto = $colectivo->pagarCon($tarjeta);
@@ -80,7 +80,7 @@ class BoletoTest extends TestCase
     {
         $colectivo = new Colectivo(133, "RosarioBus", 69);
         $tiempo = new TiempoFalso();
-        $tarjeta = new Medio(0, $tiempo);
+        $tarjeta = new Medio(0, $tiempo, $ValorBoleto);
         $tarjeta->recargar(30);
         $tiempo->avanzar(250);
         $boleto = $colectivo->pagarCon($tarjeta);
@@ -144,7 +144,7 @@ class BoletoTest extends TestCase
     {
         $colectivo = new Colectivo(133, "RosarioBus", 69);
         $tiempo = new TiempoFalso();
-        $tarjeta = new \TrabajoTarjeta\MedioUniversitario(0, $tiempo);
+        $tarjeta = new \TrabajoTarjeta\MedioUniversitario(0, $tiempo, $ValorBoleto);
         $tarjeta->recargar(30);
         $tiempo->avanzar(250);
         $boleto = $colectivo->pagarCon($tarjeta);
@@ -204,7 +204,7 @@ class BoletoTest extends TestCase
     {
         $colectivo = new Colectivo(133, "RosarioBus", 69);
         $tiempo = new TiempoFalso();
-        $tarjeta = new \TrabajoTarjeta\Completo(0, $tiempo);
+        $tarjeta = new \TrabajoTarjeta\Completo(0, $tiempo, $ValorBoleto);
 
         $boleto = $colectivo->pagarCon($tarjeta);
         $this->assertEquals($boleto->obtenerColectivo(), $colectivo);
@@ -238,7 +238,7 @@ class BoletoTest extends TestCase
     {
         $colectivo = new Colectivo(133, "RosarioBus", 69);
         $tiempo = new TiempoFalso();
-        $tarjeta = new Tarjeta(0, $tiempo);
+        $tarjeta = new Tarjeta(0, $tiempo, $ValorBoleto);
         $tarjeta->recargar(20);
         $tiempo->avanzar(250);
         $colectivo->pagarCon($tarjeta);
