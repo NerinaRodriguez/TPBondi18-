@@ -168,7 +168,7 @@ class Tarjeta implements TarjetaInterface
      * @return float
      *   Si fue posible realizar la carga.
      */
-    protected function puedeTrasbordo($linea, PrecioBoletoInterface $ValorBoleto)
+    protected function puedeTrasbordo($linea, $ValorBoleto)
     {
         if ($this->UltimoColectivo == $linea || $this->UltimoValorPagado == 0.0 || $this->Ultimotrasbordo) {
             $this->Ultimotrasbordo = 0;
