@@ -85,18 +85,18 @@ class Tarjeta implements TarjetaInterface
     protected function pagarPlus()
     {
         if ($this->plus == 2) { //Si debe 2 plus
-            if ($this->saldo >= ($this->ValorBoleto->devolverPrecioBoleto() * 2)) { //Y si le alcanza el saldo para pagarlos
-                $this->saldo -= ($this->ValorBoleto->devolverPrecioBoleto() * 2); //Se le resta el valor
+            if ($this->saldo >= ($this->ValorBoleto * 2)) { //Y si le alcanza el saldo para pagarlos
+                $this->saldo -= ($this->ValorBoleto * 2); //Se le resta el valor
                 $this->plus = 0; //Se le devuelve los plus
                 $this->pagoplus = 2; //Se almacena que se pagaron 2 plus
-            } else if ($this->saldo >= $this->ValorBoleto->devolverPrecioBoleto()) { // Si solo alcanza para 1 plus
-                $this->saldo -= $this->ValorBoleto->devolverPrecioBoleto(); //se le descuenta
+            } else if ($this->saldo >= $this->ValorBoleto) { // Si solo alcanza para 1 plus
+                $this->saldo -= $this->ValorBoleto; //se le descuenta
                 $this->plus = 1; // Se lo devuelve
                 $this->pagoplus = 1; // Se indica que se pago un plus
             }
         } else {
-            if ($this->plus == 1 && $this->saldo > $this->ValorBoleto->devolverPrecioBoleto()) { //si debe 1 plus
-                $this->saldo -= $this->ValorBoleto->devolverPrecioBoleto(); //Se le descuenta
+            if ($this->plus == 1 && $this->saldo > $this->ValorBoleto) { //si debe 1 plus
+                $this->saldo -= $this->ValorBoleto; //Se le descuenta
                 $this->plus = 0; //Se le devuelve
                 $this->pagoplus = 1; // Se indica que se pago un plus
             }
@@ -153,7 +153,7 @@ class Tarjeta implements TarjetaInterface
      */
     protected function calculaValor($linea)
     {
-        return ($this->puedeTrasbordo($linea, $this->ValorBoleto->devolverPrecioBoleto()));
+        return ($this->puedeTrasbordo($linea, $this->ValorBoleto));
     }
 
     /**
@@ -172,21 +172,21 @@ class Tarjeta implements TarjetaInterface
     {
         if ($this->UltimoColectivo == $linea || $this->UltimoValorPagado == 0.0 || $this->Ultimotrasbordo) {
             $this->Ultimotrasbordo = 0;
-            return $ValorBoleto->devolverPrecioBoleto();
+            return $ValorBoleto;
         }
         if ($this->dependeHora()) {
             if (($this->tiempo->time() - $this->UltimaHora) < 3600) {
                 $this->Ultimotrasbordo = 1;
-                return ($ValorBoleto->devolverPrecioBoleto() * 0.33);
+                return ($ValorBoleto * 0.33);
             }
         } else {
             if (($this->tiempo->time() - $this->UltimaHora) < 5400) {
                 $this->Ultimotrasbordo = 1;
-                return ($ValorBoleto->devolverPrecioBoleto() * 0.33);
+                return ($ValorBoleto * 0.33);
             }
         }
         $this->Ultimotrasbordo = 0;
-        return $ValorBoleto->devolverPrecioBoleto();
+        return $ValorBoleto;
     }
 
     /**
@@ -235,7 +235,7 @@ class Tarjeta implements TarjetaInterface
      */
     public function boletoCompleto()
     {
-        return $this->ValorBoleto->devolverPrecioBoleto(); // Devuelve el valor de un boleto completo
+        return $this->ValorBoleto; // Devuelve el valor de un boleto completo
     }
 
     /**
